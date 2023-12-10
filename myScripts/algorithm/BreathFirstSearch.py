@@ -1,12 +1,11 @@
 from queue import Queue
-from typing import Dict, Optional, TypeVar
+from typing import Dict, Optional, TypeVar, Any
 
 from myScripts.utility_dir.CustomTypes import *
 
-K = TypeVar('K')
 
 
-def apply_bfs(graph_dict: Dict[K, Edge]):
+def apply_bfs(graph_dict: Dict[Any, Vertex]):
     result_list = []
     travel_order=[]
     source = list(graph_dict.keys())[0] if graph_dict else None
@@ -19,15 +18,15 @@ def apply_bfs(graph_dict: Dict[K, Edge]):
     my_queue.put(source)
 
     result_list.append(source)
-    print("edge: ",source,"| d:",start_point.d, "| pi",start_point.pi)
+    print("Vertex: ",source,"| d:",start_point.d, "| pi",start_point.pi)
 
     # loop goes until queue is empty
     while not my_queue.empty():
 
         # take out element from queue to process it
         u = my_queue.get()
-        tail_edge = graph_dict[u]
-        node = tail_edge.neighbours
+        tail_Vertex = graph_dict[u]
+        node = tail_Vertex.neighbours
 
         '''
             check neighbor of node and if its neighbour has 
@@ -39,7 +38,7 @@ def apply_bfs(graph_dict: Dict[K, Edge]):
             elem_v = graph_dict[v]
             '''
                 check if d has been set for the current destination
-                check if the edge had been reached already
+                check if the Vertex had been reached already
             '''
 
             if numpy.isinf(elem_v.d):
@@ -51,11 +50,11 @@ def apply_bfs(graph_dict: Dict[K, Edge]):
                     that means we can reach that destination 
                     with 0 + 1 = 1 path length
                 '''
-                elem_v.d = tail_edge.d + 1
+                elem_v.d = tail_Vertex.d + 1
                 elem_v.pi = u
                 my_queue.put(v)
                 result_list.append(v)
-                print("edge: ", v,"| d:", elem_v.d, "| pi", elem_v.pi)
+                print("Vertex: ", v,"| d:", elem_v.d, "| pi", elem_v.pi)
                 vertex=(elem_v.pi,v)
                 travel_order.append(vertex)
 

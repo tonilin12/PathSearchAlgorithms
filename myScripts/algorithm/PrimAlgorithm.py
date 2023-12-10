@@ -1,14 +1,11 @@
-from typing import Dict, Optional, TypeVar
+import heapq
+from typing import Optional, Any
 
+import numpy
 from myScripts.utility_dir.CustomTypes import *
 
-import heapq
-import numpy
 
-K = TypeVar('K')
-
-
-def apply_prim(graph_dict: Dict[K, Edge]):
+def apply_prim(graph_dict: Dict[Any, Vertex]):
     result_list = []
     start_point = list(graph_dict.keys())[0] if graph_dict else None
 
@@ -29,8 +26,8 @@ def apply_prim(graph_dict: Dict[K, Edge]):
         print()
         print("out| value:", u, "|pi:", elem_u.pi, "|priority:", priority)
 
-        vertex=(elem_u.pi,u)
-        if elem_u.pi !=None:
+        vertex = (elem_u.pi, u)
+        if elem_u.pi != None:
             result_list.append(vertex)
 
         neighbours_node: Optional[NeighbourNode]

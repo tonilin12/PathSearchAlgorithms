@@ -1,15 +1,11 @@
-from typing import Dict, Optional, TypeVar, List
+from typing import Optional, Any
 
 from myScripts.algorithm.DepthFirstSearch import apply_dfs
 from myScripts.utility_dir.CustomTypes import *
 
-import numpy
 
-K = TypeVar('K')
-
-
-def apply_dag_path_search(graph_dict: Dict[K, ColoredEdge],
-                          start_point: K = None):
+def apply_dag_path_search(graph_dict: Dict[Any, ColoredVertex],
+                          start_point=None):
     result_list = []
 
     if start_point is None:
@@ -17,28 +13,28 @@ def apply_dag_path_search(graph_dict: Dict[K, ColoredEdge],
     else:
 
         if not (start_point in graph_dict):
-            print("error: graph does not have edge ", start_point)
+            print("error: graph does not have Vertex ", start_point)
             print()
             return None
 
     start_point_elem = graph_dict[start_point]
     start_point_elem.d = 0
-    back_edge = []
+    back_Vertex = []
 
-    dfs_path, topology_order = apply_dfs(graph_dict, back_edge)
+    dfs_path, topology_order = apply_dfs(graph_dict, back_Vertex)
     topology_stack = topology_order[::-1]
-    if len(back_edge) == 0:
+    if len(back_Vertex) == 0:
         result_list = create_dag_path(graph_dict, topology_stack)
 
     return result_list
 
 
-def create_dag_path(graph_dict: Dict[K, ColoredEdge],
+def create_dag_path(graph_dict: Dict[K, ColoredVertex],
                     topology_stack: List[K]):
     result_list = []
-    for index, edge in graph_dict.items():
-        edge.d = numpy.inf
-        edge.pi = None
+    for index, Vertex in graph_dict.items():
+        Vertex.d = numpy.inf
+        Vertex.pi = None
 
     s = topology_stack.pop()
     elem_u = graph_dict[s]

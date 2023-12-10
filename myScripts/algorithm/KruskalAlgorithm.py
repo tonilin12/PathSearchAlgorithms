@@ -1,26 +1,25 @@
-from typing import Dict, Optional, TypeVar, Tuple
+import heapq
+from typing import Optional, Any
 
 from myScripts.utility_dir.CustomTypes import *
-
-import heapq
 
 K = TypeVar('K')
 
 
-def apply_kruskal(edge_dict: Dict[K, Edge]):
+def apply_kruskal(Vertex_dict: Dict[Any, Vertex]):
     vertex_set = []
 
-    for edge in edge_dict.values():
-        make_set(edge)
+    for Vertex in Vertex_dict.values():
+        make_set(Vertex)
 
-    k = len(edge_dict)
+    k = len(Vertex_dict)
     min_queue = []
 
-    for edge in edge_dict.values():
+    for Vertex in Vertex_dict.values():
         node: Optional[NeighbourNode]
-        node = edge.neighbours
+        node = Vertex.neighbours
         while node:
-            vertex = (edge.index, node.index)
+            vertex = (Vertex.index, node.index)
             heapq.heappush(min_queue, (node.weight, vertex))
 
             node = node.next
@@ -32,11 +31,11 @@ def apply_kruskal(edge_dict: Dict[K, Edge]):
 
         u_k, v_k = vertex
 
-        x = findSet(edge_dict, u_k)
-        y = findSet(edge_dict, v_k)
+        x = findSet(Vertex_dict, u_k)
+        y = findSet(Vertex_dict, v_k)
 
         if x != y:
-            union(edge_dict, x, y)
+            union(Vertex_dict, x, y)
             vertex_set.append(vertex)
 
 
@@ -50,13 +49,13 @@ def apply_kruskal(edge_dict: Dict[K, Edge]):
     return vertex_set
 
 
-def make_set(edge: Optional[Edge]):
-    edge.s = 1
-    edge.pi = edge.index
+def make_set(vertex: Optional[Vertex]):
+    vertex.s = 1
+    vertex.pi = vertex.index
 
 
-def findSet(graph: Dict[K, Edge], v):
-    elem_v: Optional[Edge]
+def findSet(graph: Dict[Any, Vertex], v):
+    elem_v: Optional[Vertex]
     elem_v = graph[v]
 
     if elem_v.pi != elem_v.index:
@@ -65,9 +64,9 @@ def findSet(graph: Dict[K, Edge], v):
     return elem_v.pi
 
 
-def union(graph: Dict[K, Edge], x, y):
-    elem_x = Optional[Edge]
-    elem_y = Optional[Edge]
+def union(graph: Dict[Any, Vertex], x, y):
+    elem_x = Optional[Vertex]
+    elem_y = Optional[Vertex]
     elem_x, elem_y = (graph[x], graph[y])
 
     if elem_x.s < elem_y.s:

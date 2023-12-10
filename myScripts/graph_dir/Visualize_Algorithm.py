@@ -1,7 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-import random
+
 
 def animate_graph(graph, sequence=None):
     # Create a figure and axis
@@ -20,7 +20,8 @@ def animate_graph(graph, sequence=None):
         ax.clear()
 
         # Draw the graph
-        nx.draw(graph, pos, with_labels=True, font_weight='bold', node_size=700, node_color='skyblue', font_color='black')
+        nx.draw(graph, pos, with_labels=True, font_weight='bold', node_size=700, node_color='skyblue',
+                font_color='black')
 
         # Highlight the edges in blue
         highlighted_edges = [(a, b) for (a, b) in graph.edges() if (a, b) in sequence[:num + 1]]
@@ -30,10 +31,8 @@ def animate_graph(graph, sequence=None):
         nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels)
 
     # Create the animation
-    if sequence!=None:
+    if sequence != None:
         ani = FuncAnimation(fig, update, frames=len(sequence), interval=700, repeat=False)
 
     # Display the graph
     plt.show()
-
-

@@ -1,14 +1,9 @@
-from typing import Dict, Optional, TypeVar
+from typing import Optional, Any
 
 from myScripts.utility_dir.CustomTypes import *
 
-import heapq
-import numpy
 
-K = TypeVar('K')
-
-
-def apply_berman_ford(graph_dict: Dict[K, Edge], start_point: K = None):
+def apply_berman_ford(graph_dict: Dict[Any, Vertex], start_point=None):
     result_list = []
 
     if start_point is None:
@@ -16,7 +11,7 @@ def apply_berman_ford(graph_dict: Dict[K, Edge], start_point: K = None):
     else:
 
         if not (start_point in graph_dict):
-            print("error: graph does not have edge ", start_point)
+            print("error: graph does not have Vertex ", start_point)
             print()
             return None
 
@@ -25,7 +20,7 @@ def apply_berman_ford(graph_dict: Dict[K, Edge], start_point: K = None):
     start_point_elem.e = 0
     my_queue = []
     my_queue.append(start_point)
-    negative_circle=[]
+    negative_circle = []
 
     while my_queue:
         u = my_queue.pop()
@@ -52,7 +47,7 @@ def apply_berman_ford(graph_dict: Dict[K, Edge], start_point: K = None):
                     if elem_v.index not in my_queue:
                         my_queue.append(elem_v.index)
                 else:
-                    negative_circle=find_negative_circle(graph_dict,elem_v.index)
+                    negative_circle = find_negative_circle(graph_dict, elem_v.index)
 
             node = node.next
 
@@ -62,18 +57,18 @@ def apply_berman_ford(graph_dict: Dict[K, Edge], start_point: K = None):
     return result_list
 
 
-def find_negative_circle(graph_dict: Dict[K, Edge], v: K):
-    circle_edges = []
-    for index, edge in graph_dict.items():
-        edge.b = False
+def find_negative_circle(graph_dict: Dict[Any, Vertex], v):
+    circle_Vertexs = []
+    for index, Vertex in graph_dict.items():
+        Vertex.b = False
 
     elem_v = graph_dict[v]
     elem_u = graph_dict[elem_v.pi]
 
-    circle_edges.append(elem_u.index)
+    circle_Vertexs.append(elem_u.index)
     while not elem_u.b:
         elem_u.b = True
         elem_u = graph_dict[elem_u.pi]
-        circle_edges.append(elem_u.index)
+        circle_Vertexs.append(elem_u.index)
 
-    return circle_edges
+    return circle_Vertexs

@@ -1,14 +1,13 @@
-from typing import Dict, Optional, TypeVar
-
-from myScripts.utility_dir.CustomTypes import *
-
 import heapq
+from typing import Optional, Any
+
 import numpy
+from myScripts.utility_dir.CustomTypes import *
 
 K = TypeVar('K')
 
 
-def apply_dijkstra(graph_dict: Dict[K, Edge], start_point: K = None):
+def apply_dijkstra(graph_dict: Dict[Any, Vertex], start_point=None):
     result_list = []
 
     if start_point is None:
@@ -16,7 +15,7 @@ def apply_dijkstra(graph_dict: Dict[K, Edge], start_point: K = None):
     else:
 
         if not (start_point in graph_dict):
-            print("error: graph does not have edge ", start_point)
+            print("error: graph does not have Vertex ", start_point)
             print()
             return None
 
@@ -53,9 +52,9 @@ def apply_dijkstra(graph_dict: Dict[K, Edge], start_point: K = None):
     return result_list
 
 
-def find_cheapest_path(graph_dict: Dict[K, Edge],
-                       start_point0: K = None,
-                       destination0: K = None):
+def find_cheapest_path(graph_dict: Dict[Any, Vertex],
+                       start_point0=None,
+                       destination0=None):
     if not (start_point0 in graph_dict) or not (destination0 in graph_dict):
         return None
     apply_dijkstra(graph_dict, start_point0)
