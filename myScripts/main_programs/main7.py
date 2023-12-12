@@ -37,7 +37,8 @@ class GraphGUI:
             messagebox.showerror("Error", "Please enter both startpoint and destination.")
             return
 
-        file = "input"
+        file = "sorucefiles/input"
+
         graph_raw = create_default_dict_from_file(file)
 
         cheapest_path_list = find_cheapest_path(graph_raw, source, destination)

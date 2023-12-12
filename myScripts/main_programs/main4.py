@@ -9,7 +9,8 @@ def show_graph(list_raw, order):
 
 
 if __name__ == '__main__':
-    file = "adatok"
+    file = "sorucefiles/adatok"
+
     dict0 = create_default_dict_from_file(file)
     prim_order_list = apply_prim(dict0)
     print(prim_order_list)

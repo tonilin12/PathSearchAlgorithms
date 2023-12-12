@@ -9,7 +9,8 @@ def show_graph(list_raw, order):
 
 
 if __name__ == '__main__':
-    file = "adatok"
+    file = "sorucefiles/adatok"
+
     graph_raw = create_default_dict_from_file(file)
     kruskal_order = apply_kruskal(graph_raw)
     show_graph(graph_raw, kruskal_order)

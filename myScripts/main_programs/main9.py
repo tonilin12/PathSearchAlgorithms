@@ -9,7 +9,8 @@ def show_graph(list_raw, order):
 
 
 if __name__ == '__main__':
-    file = "adatok"
+    file = "sorucefiles/adatok"
+
     graph_raw = create_default_dict_from_file(file)
     berman_ford_path = apply_berman_ford(graph_raw)
     show_graph(graph_raw,berman_ford_path)
