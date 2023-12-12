@@ -1,3 +1,4 @@
+from collections import deque
 from typing import Optional, Any
 
 from myScripts.utility_dir.CustomTypes import *
@@ -18,12 +19,12 @@ def apply_berman_ford(graph_dict: Dict[Any, Vertex], start_point=None):
     start_point_elem = graph_dict[start_point]
     start_point_elem.d = 0
     start_point_elem.e = 0
-    my_queue = []
+    my_queue = deque()
     my_queue.append(start_point)
     negative_circle = []
 
     while my_queue:
-        u = my_queue.pop()
+        u = my_queue.popleft()
         elem_u = graph_dict[u]
         if elem_u.pi is not None:
             result_list = [tup for tup in result_list
@@ -47,28 +48,31 @@ def apply_berman_ford(graph_dict: Dict[Any, Vertex], start_point=None):
                     if elem_v.index not in my_queue:
                         my_queue.append(elem_v.index)
                 else:
-                    negative_circle = find_negative_circle(graph_dict, elem_v.index)
+                    negative_circle = \
+                        find_negative_circle(graph_dict, elem_v.index)
 
             node = node.next
 
     print("negative circile:", negative_circle)
 
     print(result_list)
+    print()
+    print()
     return result_list
 
 
 def find_negative_circle(graph_dict: Dict[Any, Vertex], v):
-    circle_Vertexs = []
-    for index, Vertex in graph_dict.items():
-        Vertex.b = False
+    circle_vertices = []
+    for index, vertex in graph_dict.items():
+        vertex.b = False
 
     elem_v = graph_dict[v]
     elem_u = graph_dict[elem_v.pi]
 
-    circle_Vertexs.append(elem_u.index)
+    circle_vertices.append(elem_u.index)
     while not elem_u.b:
         elem_u.b = True
         elem_u = graph_dict[elem_u.pi]
-        circle_Vertexs.append(elem_u.index)
+        circle_vertices.append(elem_u.index)
 
-    return circle_Vertexs
+    return circle_vertices

@@ -4,8 +4,6 @@ from typing import Optional, Any
 import numpy
 from myScripts.utility_dir.CustomTypes import *
 
-K = TypeVar('K')
-
 
 def apply_dijkstra(graph_dict: Dict[Any, Vertex], start_point=None):
     result_list = []
@@ -49,6 +47,8 @@ def apply_dijkstra(graph_dict: Dict[Any, Vertex], start_point=None):
         result_list.append(vertex)
 
     print(result_list)
+    print()
+
     return result_list
 
 
@@ -68,8 +68,6 @@ def find_cheapest_path(graph_dict: Dict[Any, Vertex],
         elem_v = graph_dict[elem_v.pi]
 
     path = path[::-1]
-    print()
-    print("utvonal")
-    print(path)
+    print("utvonal:",path)
     print()
     return path

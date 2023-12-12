@@ -55,5 +55,6 @@ def create_dag_path(graph_dict: Dict[K, ColoredVertex],
         vertex = (elem_u.pi, elem_u.index)
         print(elem_u.pi, "->", elem_u.index, "d: ", elem_u.d)
         result_list.append(vertex)
+        print()
 
     return result_list

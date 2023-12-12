@@ -1,7 +1,5 @@
-import os
-from typing import TypeVar
-
 from myScripts.graph_dir.graphfile import *
+from myScripts.graph_dir.graphfile import draw_digraph
 from myScripts.utility_dir.CustomTypes import *
 
 

@@ -1,24 +1,23 @@
 from queue import Queue
-from typing import Dict, Optional, TypeVar, Any
+from typing import Any
 
 from myScripts.utility_dir.CustomTypes import *
 
 
-
 def apply_bfs(graph_dict: Dict[Any, Vertex]):
     result_list = []
-    travel_order=[]
+    travel_order = []
     source = list(graph_dict.keys())[0] if graph_dict else None
-    start_point=graph_dict[source]
+    start_point = graph_dict[source]
     my_queue = Queue()
 
     # setup first element of queue source from where BFS is starting
     node = start_point.neighbours
-    start_point.d =0
+    start_point.d = 0
     my_queue.put(source)
 
     result_list.append(source)
-    print("Vertex: ",source,"| d:",start_point.d, "| pi",start_point.pi)
+    print("Vertex: ", source, "| d:", start_point.d, "| pi", start_point.pi)
 
     # loop goes until queue is empty
     while not my_queue.empty():
@@ -54,8 +53,8 @@ def apply_bfs(graph_dict: Dict[Any, Vertex]):
                 elem_v.pi = u
                 my_queue.put(v)
                 result_list.append(v)
-                print("Vertex: ", v,"| d:", elem_v.d, "| pi", elem_v.pi)
-                vertex=(elem_v.pi,v)
+                print("Vertex: ", v, "| d:", elem_v.d, "| pi", elem_v.pi)
+                vertex = (elem_v.pi, v)
                 travel_order.append(vertex)
 
             # if everything is done proceed forward to the next neighbor
@@ -63,6 +62,4 @@ def apply_bfs(graph_dict: Dict[Any, Vertex]):
 
     print(travel_order)
     print()
-    print()
     return travel_order
-

@@ -11,12 +11,6 @@ class Color:
     BLACK = "black"
 
 
-class NeighbourElem:
-    def __init__(self, index=None):
-        self.index = index
-        self.weight = 0
-
-
 class NeighbourNode:
 
     def __init__(self, index=None, weight=None, next1=None):

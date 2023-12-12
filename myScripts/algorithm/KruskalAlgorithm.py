@@ -3,8 +3,6 @@ from typing import Optional, Any
 
 from myScripts.utility_dir.CustomTypes import *
 
-K = TypeVar('K')
-
 
 def apply_kruskal(Vertex_dict: Dict[Any, Vertex]):
     vertex_set = []
@@ -28,7 +26,6 @@ def apply_kruskal(Vertex_dict: Dict[Any, Vertex]):
         weight, vertex = heapq.heappop(min_queue)
         print("out: ", weight, "|", vertex)
 
-
         u_k, v_k = vertex
 
         x = findSet(Vertex_dict, u_k)
@@ -38,10 +35,7 @@ def apply_kruskal(Vertex_dict: Dict[Any, Vertex]):
             union(Vertex_dict, x, y)
             vertex_set.append(vertex)
 
-
-            k =k- 1
-
-
+            k = k - 1
 
     print(vertex_set)
     print()
