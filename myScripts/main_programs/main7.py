@@ -37,7 +37,7 @@ class GraphGUI:
             messagebox.showerror("Error", "Please enter both startpoint and destination.")
             return
 
-        file = "sorucefiles/input"
+        file = "sourcefiles/input"
 
         graph_raw = create_default_dict_from_file(file)
 

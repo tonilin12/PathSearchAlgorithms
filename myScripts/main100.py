@@ -3,7 +3,7 @@ from myScripts.algorithm.FloydWarshall import *
 
 def main():
     graph = GraphMatrix()
-    file = "sorucefiles/adatok10"
+    file = "sourcefiles/adatok100"
 
     read_to_graph_matrix_from_file(graph, file)
     graph.display()

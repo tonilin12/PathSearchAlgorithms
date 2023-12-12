@@ -9,7 +9,7 @@ def show_graph(list_raw, order):
 
 
 if __name__ == '__main__':
-    file = "sorucefiles/adatok"
+    file = "sourcefiles/adatok"
 
 
     graph_raw = create_default_dict_from_file(file,colored_Vertexs=True)
