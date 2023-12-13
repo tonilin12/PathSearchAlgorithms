@@ -1,7 +1,5 @@
-from matplotlib.pyplot import show
-import networkx as nx
-from myScripts.graph_dir.Visualize_Algorithm import *
 from myScripts.utility_dir.Utility import *
+from myScripts.graph_dir.Visualize_Algorithm import *
 
 
 def do_drawing(graph, adjacency_list, order):

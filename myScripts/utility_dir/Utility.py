@@ -76,3 +76,14 @@ def show_graph(graph_dict, order):
     adjacency_list = create_adjacency_list(graph_dict)
     draw_digraph(adjacency_list, order)
 
+
+def get_start_point(graph_dict, start_point=None):
+    if start_point is None:
+        start_point = list(graph_dict.keys())[0] if graph_dict else None
+    else:
+        if start_point not in graph_dict:
+            print(f"error: graph does not have Vertex {start_point}")
+            print()
+            return None
+
+    return start_point

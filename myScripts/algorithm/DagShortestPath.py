@@ -1,22 +1,14 @@
 from typing import Optional, Any
 
 from myScripts.algorithm.DepthFirstSearch import apply_dfs
-from myScripts.utility_dir.CustomTypes import *
+from myScripts.utility_dir.Utility import *
 
 
 def apply_dag_path_search(graph_dict: Dict[Any, ColoredVertex],
                           start_point=None):
     result_list = []
 
-    if start_point is None:
-        start_point = list(graph_dict.keys())[0] if graph_dict else None
-    else:
-
-        if not (start_point in graph_dict):
-            print("error: graph does not have Vertex ", start_point)
-            print()
-            return None
-
+    start_point = get_start_point(graph_dict,start_point)
     start_point_elem = graph_dict[start_point]
     start_point_elem.d = 0
     back_Vertex = []
@@ -32,9 +24,9 @@ def apply_dag_path_search(graph_dict: Dict[Any, ColoredVertex],
 def create_dag_path(graph_dict: Dict[K, ColoredVertex],
                     topology_stack: List[K]):
     result_list = []
-    for index, Vertex in graph_dict.items():
-        Vertex.d = numpy.inf
-        Vertex.pi = None
+    for index, vertex in graph_dict.items():
+        vertex.d = numpy.inf
+        vertex.pi = None
 
     s = topology_stack.pop()
     elem_u = graph_dict[s]
@@ -58,3 +50,6 @@ def create_dag_path(graph_dict: Dict[K, ColoredVertex],
         print()
 
     return result_list
+
+
+

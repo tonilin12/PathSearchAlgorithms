@@ -51,30 +51,5 @@ class ColoredVertex(Vertex):
         self.color = Color.WHITE
 
 
-class Graph:
-    def __init__(self):
-        self.vertices = {}
-        self.adj_matrix = []
-
-    def add_vertex(self, vertex):
-        if vertex not in self.vertices:
-            index = len(self.vertices)
-            self.vertices[vertex] = index
-            # Initialize a new row and column in the adjacency matrix
-            for row in self.adj_matrix:
-                row.append(0)
-            self.adj_matrix.append([0] * index)
-            for i in range(index):
-                self.adj_matrix[i].append(0)
-
-    def add_edge(self, start_vertex, end_vertex, weight=1):
-        if start_vertex in self.vertices and end_vertex in self.vertices:
-            start_index = self.vertices[start_vertex]
-            end_index = self.vertices[end_vertex]
-            self.adj_matrix[start_index][end_index] = weight
-
-    def display_adjacency_matrix(self):
-        for row in self.adj_matrix:
-            print(row)
 
 

@@ -1,20 +1,13 @@
 from collections import deque
 from typing import Optional, Any
-
+from myScripts.utility_dir.Utility import *
 from myScripts.utility_dir.CustomTypes import *
 
 
 def apply_berman_ford(graph_dict: Dict[Any, Vertex], start_point=None):
     result_list = []
 
-    if start_point is None:
-        start_point = list(graph_dict.keys())[0] if graph_dict else None
-    else:
-
-        if not (start_point in graph_dict):
-            print("error: graph does not have Vertex ", start_point)
-            print()
-            return None
+    start_point = get_start_point(graph_dict,start_point)
 
     start_point_elem = graph_dict[start_point]
     start_point_elem.d = 0
