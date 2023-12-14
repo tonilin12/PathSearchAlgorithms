@@ -3,19 +3,14 @@ from typing import Optional, Any
 
 import numpy
 from myScripts.utility_dir.CustomTypes import *
+from myScripts.utility_dir.Utility import get_start_point
 
 
 def apply_dijkstra(graph_dict: Dict[Any, Vertex], start_point=None):
     result_list = []
 
-    if start_point is None:
-        start_point = list(graph_dict.keys())[0] if graph_dict else None
-    else:
+    start_point = get_start_point(graph_dict,start_point)
 
-        if not (start_point in graph_dict):
-            print("error: graph does not have Vertex ", start_point)
-            print()
-            return None
 
     start_point_elem = graph_dict[start_point]
     start_point_elem.d = 0
