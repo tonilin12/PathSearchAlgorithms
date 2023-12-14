@@ -27,10 +27,9 @@ programs = [
      ,("QueueBermanFord-traversal", "main_programs/main9")
 ]
 
-# Create buttons dynamically
 for program_text, program_name in programs:
-    # Determine the width based on the length of the button text
-    button_width = max(len(f"Start {program_text}") + 4, 20)  # Set a minimum width of 20
+
+    button_width = max(len(f"Start {program_text}") + 4, 20)
     button = ttk.Button(
         root, text=f"Start {program_text}",
         command=lambda name=program_name: start_animation(name),

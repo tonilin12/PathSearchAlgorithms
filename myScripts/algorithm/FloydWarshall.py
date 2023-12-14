@@ -1,7 +1,3 @@
-from collections import deque
-from typing import Optional, Any
-
-from myScripts.utility_dir.CustomTypes import *
 from myScripts.utility_dir.graph_matrix_script import *
 
 
@@ -11,7 +7,7 @@ def apply_floyd_warshall(graph: GraphMatrix):
 
     print()
     for vertex_k in edge_dict.keys():
-        print("vertex: ", vertex_k)
+        print("insert_vertex: ", vertex_k)
         for start_point in edge_dict.keys():
             for end_point in edge_dict.keys():
                 edge_ij: Edge = edge_dict[start_point][end_point]
@@ -22,10 +18,5 @@ def apply_floyd_warshall(graph: GraphMatrix):
                 condition2 = len(negative_circles) == 0
                 if condition2 and condition1:
                     print(start_point, "-", edge_ik.weight, "->", vertex_k
-                          , "-", edge_kj.weight, "->", end_point
-                          , ", former:", start_point, "-", edge_ij.weight,
-                          "->", end_point)
-                    edge_ij.weight = edge_ik.weight + edge_kj.weight
-                    edge_ij.pi = edge_kj.pi
-
+                          , "-", edge_kj.weight, "->", end_point)
         print("------------------------------------------------------")

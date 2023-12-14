@@ -7,17 +7,17 @@ from myScripts.utility_dir.CustomTypes import *
 def apply_kruskal(Vertex_dict: Dict[Any, Vertex]):
     vertex_set = []
 
-    for Vertex in Vertex_dict.values():
-        make_set(Vertex)
+    for vertex0 in Vertex_dict.values():
+        make_set(vertex0)
 
     k = len(Vertex_dict)
     min_queue = []
 
-    for Vertex in Vertex_dict.values():
+    for vertex0 in Vertex_dict.values():
         node: Optional[NeighbourNode]
-        node = Vertex.neighbours
+        node = vertex0.neighbours
         while node:
-            vertex = (Vertex.index, node.index)
+            vertex = (vertex0.index, node.index)
             heapq.heappush(min_queue, (node.weight, vertex))
 
             node = node.next
@@ -59,9 +59,8 @@ def findSet(graph: Dict[Any, Vertex], v):
 
 
 def union(graph: Dict[Any, Vertex], x, y):
-    elem_x = Optional[Vertex]
-    elem_y = Optional[Vertex]
-    elem_x, elem_y = (graph[x], graph[y])
+    elem_x: Vertex = graph[x]
+    elem_y: Vertex = graph[y]
 
     if elem_x.s < elem_y.s:
         elem_x.pi = y
